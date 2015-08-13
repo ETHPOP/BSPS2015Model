@@ -1,0 +1,32 @@
+---
+title: "TEST to run the model again"
+output: pdf_document
+---
+
+```{r, echo=FALSE}
+
+##Read in the data
+source('E:/ProjectionTestRuns/4TRENDEFV2/ReadIn_TRENDEFV2.r')
+source('E:/ProjectionTestRuns/4TRENDEFV2/Firstrunemrates_EF_emflow_Li.r')
+source('E:/ProjectionTestRuns/4TRENDEFV2/Function_emrates_comp_newfert_EFemflow_comp_FLOCCOR.r')
+source('E:/ProjectionTestRuns/4TRENDEFV2/Runmodel_em_trend_comp_EF_flow_li.r')
+
+```
+
+
+
+```{r}
+DIR<-"N:/Earth&Environment/Research/SOG/Research-2/Projects/EthnicProjectionsFoF/ProjectionsV2/4TRENDEFV2"
+setwd(DIR)
+Birth1<-read.csv("Births0151TRENDEFV2.csv")
+
+
+DIR<-"E:/ProjectionTestRuns/4TRENDEFV2"
+setwd(DIR)
+Birth2<-read.csv("Births0151TRENDEFV2.csv")
+
+RES<-Birth1==Birth2
+
+
+```
+
