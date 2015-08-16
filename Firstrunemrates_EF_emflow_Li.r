@@ -20,72 +20,86 @@ Births<-rowSums(totBirths)
 Births<-data.frame(Births)
 
 
-BirthsWBR<-Births*mixingmatrix$WBR
-BirthsWIR<-Births*mixingmatrix$WIR
+#BirthsWBR<-Births*mixingmatrix$WBR
+BirthsWBI<-Births*mixingmatrix$WBI
+#BirthsWIR<-Births*mixingmatrix$WIR
 BirthsWHO<-Births*mixingmatrix$WHO
-BirthsWBC<-Births*mixingmatrix$WBC
-BirthsWBA<-Births*mixingmatrix$WBA
-BirthsWAS<-Births*mixingmatrix$WAS
-BirthsOMI<-Births*mixingmatrix$OMI
+#BirthsWBC<-Births*mixingmatrix$WBC
+#BirthsWBA<-Births*mixingmatrix$WBA
+#BirthsWAS<-Births*mixingmatrix$WAS
+#BirthsOMI<-Births*mixingmatrix$OMI
+BirthsMIX<-Births*mixingmatrix$MIX
 BirthsIND<-Births*mixingmatrix$IND
 BirthsPAK<-Births*mixingmatrix$PAK
 BirthsBAN<-Births*mixingmatrix$BAN
-BirthsOAS<-Births*mixingmatrix$OAS
-BirthsBLC<-Births*mixingmatrix$BLC
-BirthsBLA<-Births*mixingmatrix$BLA
-BirthsOBL<-Births*mixingmatrix$OBL
 BirthsCHI<-Births*mixingmatrix$CHI
+BirthsOAS<-Births*mixingmatrix$OAS
+BirthsBLA<-Births*mixingmatrix$BLA
+BirthsBLC<-Births*mixingmatrix$BLC
+BirthsOBL<-Births*mixingmatrix$OBL
 BirthsOTH<-Births*mixingmatrix$OTH
 
-BirthsWBRs<-data.frame(rowSums(data.frame(matrix(BirthsWBR[1:5680,],nrow=355,ncol=16)))  )
-BirthsWIRs<-data.frame(rowSums(data.frame(matrix(BirthsWIR[1:5680,],nrow=355,ncol=16)))  )
-BirthsWHOs<-data.frame(rowSums(data.frame(matrix(BirthsWHO[1:5680,],nrow=355,ncol=16)))  )
-BirthsWBCs<-data.frame(rowSums(data.frame(matrix(BirthsWBC[1:5680,],nrow=355,ncol=16)))  )
-BirthsWBAs<-data.frame(rowSums(data.frame(matrix(BirthsWBA[1:5680,],nrow=355,ncol=16)))  )
-BirthsWASs<-data.frame(rowSums(data.frame(matrix(BirthsWAS[1:5680,],nrow=355,ncol=16)))  )
-BirthsOMIs<-data.frame(rowSums(data.frame(matrix(BirthsOMI[1:5680,],nrow=355,ncol=16)))  )
-BirthsINDs<-data.frame(rowSums(data.frame(matrix(BirthsIND[1:5680,],nrow=355,ncol=16)))  )
-BirthsPAKs<-data.frame(rowSums(data.frame(matrix(BirthsPAK[1:5680,],nrow=355,ncol=16)))  )
-BirthsBANs<-data.frame(rowSums(data.frame(matrix(BirthsBAN[1:5680,],nrow=355,ncol=16)))  )
-BirthsOASs<-data.frame(rowSums(data.frame(matrix(BirthsOAS[1:5680,],nrow=355,ncol=16)))  )
-BirthsBLCs<-data.frame(rowSums(data.frame(matrix(BirthsBLC[1:5680,],nrow=355,ncol=16)))  )
-BirthsBLAs<-data.frame(rowSums(data.frame(matrix(BirthsBLA[1:5680,],nrow=355,ncol=16)))  )
-BirthsOBLs<-data.frame(rowSums(data.frame(matrix(BirthsOBL[1:5680,],nrow=355,ncol=16)))  )
-BirthsCHIs<-data.frame(rowSums(data.frame(matrix(BirthsCHI[1:5680,],nrow=355,ncol=16)))  )
-BirthsOTHs<-data.frame(rowSums(data.frame(matrix(BirthsOTH[1:5680,],nrow=355,ncol=16)))  )
+Groups<-12
+Areas<-327
+GrAr<-Groups*Areas
 
-colnames(BirthsWBRs)<-"Births"
-colnames(BirthsWIRs)<-"Births"
+
+#BirthsWBRs<-data.frame(rowSums(data.frame(matrix(BirthsWBR[1:GrAr,],nrow=Areas,ncol=Groups)))  )
+BirthsWBIs<-data.frame(rowSums(data.frame(matrix(BirthsWBI[1:GrAr,],nrow=Areas,ncol=Groups)))  )
+#BirthsWIRs<-data.frame(rowSums(data.frame(matrix(BirthsWIR[1:GrAr,],nrow=Areas,ncol=Groups)))  )
+BirthsWHOs<-data.frame(rowSums(data.frame(matrix(BirthsWHO[1:GrAr,],nrow=Areas,ncol=Groups)))  )
+#BirthsWBCs<-data.frame(rowSums(data.frame(matrix(BirthsWBC[1:GrAr,],nrow=Areas,ncol=Groups)))  )
+#BirthsWBAs<-data.frame(rowSums(data.frame(matrix(BirthsWBA[1:GrAr,],nrow=Areas,ncol=Groups)))  )
+#BirthsWASs<-data.frame(rowSums(data.frame(matrix(BirthsWAS[1:GrAr,],nrow=Areas,ncol=Groups)))  )
+#BirthsOMIs<-data.frame(rowSums(data.frame(matrix(BirthsOMI[1:GrAr,],nrow=Areas,ncol=Groups)))  )
+BirthsMIXs<-data.frame(rowSums(data.frame(matrix(BirthsMIX[1:GrAr,],nrow=Areas,ncol=Groups)))  )
+BirthsINDs<-data.frame(rowSums(data.frame(matrix(BirthsIND[1:GrAr,],nrow=Areas,ncol=Groups)))  )
+BirthsPAKs<-data.frame(rowSums(data.frame(matrix(BirthsPAK[1:GrAr,],nrow=Areas,ncol=Groups)))  )
+BirthsBANs<-data.frame(rowSums(data.frame(matrix(BirthsBAN[1:GrAr,],nrow=Areas,ncol=Groups)))  )
+BirthsCHIs<-data.frame(rowSums(data.frame(matrix(BirthsCHI[1:GrAr,],nrow=Areas,ncol=Groups)))  )
+BirthsOASs<-data.frame(rowSums(data.frame(matrix(BirthsOAS[1:GrAr,],nrow=Areas,ncol=Groups)))  )
+BirthsBLAs<-data.frame(rowSums(data.frame(matrix(BirthsBLA[1:GrAr,],nrow=Areas,ncol=Groups)))  )
+BirthsBLCs<-data.frame(rowSums(data.frame(matrix(BirthsBLC[1:GrAr,],nrow=Areas,ncol=Groups)))  )
+BirthsOBLs<-data.frame(rowSums(data.frame(matrix(BirthsOBL[1:GrAr,],nrow=Areas,ncol=Groups)))  )
+BirthsOTHs<-data.frame(rowSums(data.frame(matrix(BirthsOTH[1:GrAr,],nrow=Areas,ncol=Groups)))  )
+
+colnames(BirthsWBIs)<-"Births"
+#colnames(BirthsWBRs)<-"Births"
+#colnames(BirthsWIRs)<-"Births"
 colnames(BirthsWHOs)<-"Births"
-colnames(BirthsWBCs)<-"Births"
-colnames(BirthsWBAs)<-"Births"
-colnames(BirthsWASs)<-"Births"
-colnames(BirthsOMIs)<-"Births"
+#colnames(BirthsWBCs)<-"Births"
+#colnames(BirthsWBAs)<-"Births"
+#colnames(BirthsWASs)<-"Births"
+#colnames(BirthsOMIs)<-"Births"
+colnames(BirthsMIXs)<-"Births"
 colnames(BirthsINDs)<-"Births"
 colnames(BirthsPAKs)<-"Births"
 colnames(BirthsBANs)<-"Births"
-colnames(BirthsOASs)<-"Births"
-colnames(BirthsBLCs)<-"Births"
-colnames(BirthsBLAs)<-"Births"
-colnames(BirthsOBLs)<-"Births"
 colnames(BirthsCHIs)<-"Births"
+colnames(BirthsOASs)<-"Births"
+colnames(BirthsBLAs)<-"Births"
+colnames(BirthsBLCs)<-"Births"
+colnames(BirthsOBLs)<-"Births"
 colnames(BirthsOTHs)<-"Births"
 
-BirthsAll<-rbind( BirthsWBRs,
-BirthsWIRs,
+BirthsAll<-rbind( 
+BirthsWBIs,
+#BirthsWBRs,
+#BirthsWIRs,
 BirthsWHOs,
-BirthsWBCs,
-BirthsWBAs,
-BirthsWASs,
-BirthsOMIs,
+#BirthsWBCs,
+#BirthsWBAs,
+#BirthsWASs,
+#BirthsOMIs,
+BirthsMIXs,
 BirthsINDs,
 BirthsPAKs,
 BirthsBANs,
-BirthsOASs,
-BirthsBLCs,
-BirthsBLAs,
-BirthsOBLs,
 BirthsCHIs,
+BirthsOASs,
+BirthsBLAs,
+BirthsBLCs,
+BirthsOBLs,
 BirthsOTHs)
 
 MBirths<-BirthsAll*bm
@@ -136,119 +150,163 @@ surv.pop<-(total.survivors-surv.em)
 
 out.migrants<-outm.prob*surv.pop
 
-uksurvWBR<- colSums(surv.pop[1:355,])
-uksurvWIR<- colSums(surv.pop[356:710,])
-uksurvWHO<- colSums(surv.pop[711:1065,])
-uksurvWBC<- colSums(surv.pop[1066:1420,])
-uksurvWBA<- colSums(surv.pop[1421:1775,])
-uksurvWAS<- colSums(surv.pop[1776:2130,])
-uksurvOMI<- colSums(surv.pop[2131:2485,])
-uksurvIND<- colSums(surv.pop[2486:2840,])
-uksurvPAK<- colSums(surv.pop[2841:3195,])
-uksurvBAN<- colSums(surv.pop[3196:3550,])
-uksurvOAS<- colSums(surv.pop[3551:3905,])
-uksurvBLC<- colSums(surv.pop[3906:4260,])
-uksurvBLA<- colSums(surv.pop[4261:4615,])
-uksurvOBL<- colSums(surv.pop[4616:4970,])
-uksurvCHI<- colSums(surv.pop[4971:5325,])
-uksurvOTH<- colSums(surv.pop[5326:5680,])
+uksurvWBI<-colSums(surv.pop[1:327,])
+uksurvWHO<-colSums(surv.pop[328:654,])
+uksurvMIX<-colSums(surv.pop[655:981,])
+uksurvIND<-colSums(surv.pop[982:1308,])
+uksurvPAK<-colSums(surv.pop[1309:1635,])
+uksurvBAN<-colSums(surv.pop[1636:1962,])
+uksurvCHI<-colSums(surv.pop[1963:2289,])
+uksurvOAS<-colSums(surv.pop[2290:2616,])
+uksurvBLA<-colSums(surv.pop[2617:2943,])
+uksurvBLC<-colSums(surv.pop[2944:3270,])
+uksurvOBL<-colSums(surv.pop[3271:3597,])
+uksurvOTH<-colSums(surv.pop[3598:3924,])
 
-ukWBR<-matrix(NA,nrow=355,ncol=204)
-for(i in 1:355)ukWBR[i,]<- uksurvWBR
-uk_sWBR<-data.frame(ukWBR)
+
+
+#uksurvWBR<- colSums(surv.pop[1:355,])
+#uksurvWIR<- colSums(surv.pop[356:710,])
+#uksurvWHO<- colSums(surv.pop[711:1065,])
+#uksurvWBC<- colSums(surv.pop[1066:1420,])
+#uksurvWBA<- colSums(surv.pop[1421:1775,])
+#uksurvWAS<- colSums(surv.pop[1776:2130,])
+#uksurvOMI<- colSums(surv.pop[2131:2485,])
+#uksurvIND<- colSums(surv.pop[2486:2840,])
+#uksurvPAK<- colSums(surv.pop[2841:3195,])
+#uksurvBAN<- colSums(surv.pop[3196:3550,])
+#uksurvOAS<- colSums(surv.pop[3551:3905,])
+#uksurvBLC<- colSums(surv.pop[3906:4260,])
+#uksurvBLA<- colSums(surv.pop[4261:4615,])
+#uksurvOBL<- colSums(surv.pop[4616:4970,])
+#uksurvCHI<- colSums(surv.pop[4971:5325,])
+#uksurvOTH<- colSums(surv.pop[5326:5680,])
+
+
+ukWBI<-matrix(NA,nrow=Areas,ncol=204)
+for(i in 1:Areas)ukWBI[i,]<- uksurvWBI
+uk_sWBI<-data.frame(ukWBI)
+#fix(uk_sWIR)
+
+
+#ukWBR<-matrix(NA,nrow=Areas,ncol=204)
+#for(i in 1:Areas)ukWBR[i,]<- uksurvWBR
+#uk_sWBR<-data.frame(ukWBR)
 #fix(uk_sWIR)
 
 #WIR
-ukWIR<-matrix(NA,nrow=355,ncol=204)
-for(i in 1:355)ukWIR[i,]<- uksurvWIR
-uk_sWIR<-data.frame(ukWIR)
+#ukWIR<-matrix(NA,nrow=Areas,ncol=204)
+#for(i in 1:Areas)ukWIR[i,]<- uksurvWIR
+#uk_sWIR<-data.frame(ukWIR)
 
 #"WHO",
-ukWHO<-matrix(NA,nrow=355,ncol=204)
-for (i in 1:355)ukWHO[i,]<- uksurvWHO
+ukWHO<-matrix(NA,nrow=Areas,ncol=204)
+for (i in 1:Areas)ukWHO[i,]<- uksurvWHO
 uk_sWHO<-data.frame(ukWHO)
 
 #"WBC",
-ukWBC<-matrix(NA,nrow=355,ncol=204)
-for (i in 1:355)ukWBC[i,]<- uksurvWBC
-uk_sWBC<-data.frame(ukWBC)
+#ukWBC<-matrix(NA,nrow=Areas,ncol=204)
+#for (i in 1:Areas)ukWBC[i,]<- uksurvWBC
+#uk_sWBC<-data.frame(ukWBC)
 
 #"WBA",
-ukWBA<-matrix(NA,nrow=355,ncol=204)
-for (i in 1:355)ukWBA[i,]<-uksurvWBA
-uk_sWBA<-data.frame(ukWBA)
+#ukWBA<-matrix(NA,nrow=Areas,ncol=204)
+#for (i in 1:Areas)ukWBA[i,]<-uksurvWBA
+#uk_sWBA<-data.frame(ukWBA)
 
 #"WAS",
-ukWAS<-matrix(NA,nrow=355,ncol=204)
-for (i in 1:355)ukWAS[i,]<-uksurvWAS
-uk_sWAS<-data.frame(ukWAS)
+#ukWAS<-matrix(NA,nrow=Areas,ncol=204)
+#for (i in 1:Areas)ukWAS[i,]<-uksurvWAS
+#uk_sWAS<-data.frame(ukWAS)
 
 #"OMI",
-ukOMI<-matrix(NA,nrow=355,ncol=204)
-for (i in 1:355)ukOMI[i,]<-uksurvOMI
-uk_sOMI<-data.frame(ukOMI)
+#ukOMI<-matrix(NA,nrow=Areas,ncol=204)
+#for (i in 1:Areas)ukOMI[i,]<-uksurvOMI
+#uk_sOMI<-data.frame(ukOMI)
+
+#"OMI",
+ukMIX<-matrix(NA,nrow=Areas,ncol=204)
+for (i in 1:Areas)ukMIX[i,]<-uksurvMIX
+uk_sMIX<-data.frame(ukMIX)
+
 
 #"IND",
-ukIND<-matrix(NA,nrow=355,ncol=204)
-for (i in 1:355)ukIND[i,]<- uksurvIND
+ukIND<-matrix(NA,nrow=Areas,ncol=204)
+for (i in 1:Areas)ukIND[i,]<- uksurvIND
 uk_sIND<-data.frame(ukIND)
 
 #"PAK",
-ukPAK<-matrix(NA,nrow=355,ncol=204)
-for (i in 1:355)ukPAK[i,]<-uksurvPAK
+ukPAK<-matrix(NA,nrow=Areas,ncol=204)
+for (i in 1:Areas)ukPAK[i,]<-uksurvPAK
 uk_sPAK<-data.frame(ukPAK)
 
 #"BAN",
-ukBAN<-matrix(NA,nrow=355,ncol=204)
-for (i in 1:355)ukBAN[i,]<-uksurvBAN
+ukBAN<-matrix(NA,nrow=Areas,ncol=204)
+for (i in 1:Areas)ukBAN[i,]<-uksurvBAN
 uk_sBAN<-data.frame(ukBAN)
 
-#"OAS",
-ukOAS<-matrix(NA,nrow=355,ncol=204)
-for (i in 1:355)ukOAS[i,]<-uksurvOAS
-uk_sOAS<-data.frame(ukOAS)
-
-#"BLC",
-ukBLC<-matrix(NA,nrow=355,ncol=204)
-for (i in 1:355)ukBLC[i,]  <- uksurvBLC
-uk_sBLC<-data.frame(ukBLC)
-
-#"BLA",
- ukBLA<-matrix(NA,nrow=355,ncol=204)
-for (i in 1:355)ukBLA[i,]<-uksurvBLA
-uk_sBLA<-data.frame(ukBLA)
-
-#"OBL",
-ukOBL<-matrix(NA,nrow=355,ncol=204)
-for (i in 1:355)ukOBL[i,]<-uksurvOBL
-uk_sOBL<-data.frame(ukOBL)
-
 #"CHI",
-ukCHI<-matrix(NA,nrow=355,ncol=204)
-for (i in 1:355)ukCHI[i,]<-uksurvCHI
+ukCHI<-matrix(NA,nrow=Areas,ncol=204)
+for (i in 1:Areas)ukCHI[i,]<-uksurvCHI
 uk_sCHI<-data.frame(ukCHI)
 
+#"OAS",
+ukOAS<-matrix(NA,nrow=Areas,ncol=204)
+for (i in 1:Areas)ukOAS[i,]<-uksurvOAS
+uk_sOAS<-data.frame(ukOAS)
+
+#"BLA",
+ukBLA<-matrix(NA,nrow=Areas,ncol=204)
+for (i in 1:Areas)ukBLA[i,]<-uksurvBLA
+uk_sBLA<-data.frame(ukBLA)
+
+#"BLC",
+ukBLC<-matrix(NA,nrow=Areas,ncol=204)
+for (i in 1:Areas)ukBLC[i,]  <- uksurvBLC
+uk_sBLC<-data.frame(ukBLC)
+
+
+#"OBL",
+ukOBL<-matrix(NA,nrow=Areas,ncol=204)
+for (i in 1:Areas)ukOBL[i,]<-uksurvOBL
+uk_sOBL<-data.frame(ukOBL)
+
+
 #"OTH")
-ukOTH<-matrix(NA,nrow=355,ncol=204)
-for (i in 1:355)ukOTH[i,]<-uksurvOTH
+ukOTH<-matrix(NA,nrow=Areas,ncol=204)
+for (i in 1:Areas)ukOTH[i,]<-uksurvOTH
 uk_sOTH<-data.frame(ukOTH)
 
-uk.survall<-rbind(uk_sWBR,
-uk_sWIR,
-uk_sWHO,
-uk_sWBC,
-uk_sWBA,
-uk_sWAS,
-uk_sOMI,
-uk_sIND,
-uk_sPAK,
-uk_sBAN,
-uk_sOAS,
-uk_sBLC,
-uk_sBLA,
-uk_sOBL,
-uk_sCHI,
-uk_sOTH)
+#uk.survall<-rbind(uk_sWBR,
+#uk_sWIR,
+#uk_sWHO,
+#uk_sWBC,
+#uk_sWBA,
+#uk_sWAS,
+#uk_sOMI,
+#uk_sIND,
+#uk_sPAK,
+#uk_sBAN,
+#uk_sOAS,
+#uk_sBLC,
+#uk_sBLA,
+#uk_sOBL,
+#uk_sCHI,
+#uk_sOTH)
+
+uk.survall<-rbind(uk_sWBI,
+                  uk_sWHO,
+                  uk_sMIX,
+                  uk_sIND,
+                  uk_sPAK,
+                  uk_sBAN,
+                  uk_sCHI,
+                  uk_sOAS,
+                  uk_sBLA,
+                  uk_sBLC,
+                  uk_sOBL,
+                  uk_sOTH)
+
 
 uk.surv_df<-data.frame(uk.survall)
 
@@ -514,18 +572,18 @@ E14OBLFpo<-sum(subset(fpop,GorLaEth$X3==14)),
 E15CHIFpo<-sum(subset(fpop,GorLaEth$X3==15)),
 E16OTHFpo<-sum(subset(fpop,GorLaEth$X3==16)))
 
-components<-data.frame(matrix(round(components,0),nrow=16))
+components<-data.frame(matrix(round(components,0),nrow=Groups))
 
 
-LAE16tot.deaths<-round(data.frame(matrix(rowSums(tot.deaths),ncol=16)),2)
-LAE16BirthsAll<-round(data.frame(matrix(rowSums(BirthsAll),ncol=16)),2)
-LAE16imm.flow<-round(data.frame(matrix(rowSums(imm.flow),ncol=16)),2)
-LAE16surv.em<-round(data.frame(matrix(rowSums(surv.em),ncol=16)),2)
-LAE16out.migrants<-round(data.frame(matrix(rowSums(out.migrants),ncol=16)),2)
-LAE16fininmig<-round(data.frame(matrix(rowSums(fininmig),ncol=16)),2)
-LAE16initialpop<-round(data.frame(matrix(rowSums(initialpop),ncol=16)),2)
-LAE16fpop<-round(data.frame(matrix(rowSums(fpop),ncol=16)),2)
-LAE16birthstW<-round(data.frame(matrix(rowSums(totBirths),ncol=16)),2)
+LAEDetGrouptot.deaths<-round(data.frame(matrix(rowSums(tot.deaths),ncol=Groups)),2)
+LAEDetGroupBirthsAll<-round(data.frame(matrix(rowSums(BirthsAll),ncol=Groups)),2)
+LAEDetGroupimm.flow<-round(data.frame(matrix(rowSums(imm.flow),ncol=Groups)),2)
+LAEDetGroupsurv.em<-round(data.frame(matrix(rowSums(surv.em),ncol=Groups)),2)
+LAEDetGroupout.migrants<-round(data.frame(matrix(rowSums(out.migrants),ncol=Groups)),2)
+LAEDetGroupfininmig<-round(data.frame(matrix(rowSums(fininmig),ncol=Groups)),2)
+LAEDetGroupinitialpop<-round(data.frame(matrix(rowSums(initialpop),ncol=Groups)),2)
+LAEDetGroupfpop<-round(data.frame(matrix(rowSums(fpop),ncol=Groups)),2)
+LAEDetGroupbirthstW<-round(data.frame(matrix(rowSums(totBirths),ncol=Groups)),2)
 
 
 
@@ -534,28 +592,28 @@ LAE16birthstW<-round(data.frame(matrix(rowSums(totBirths),ncol=16)),2)
 #BirthsbyWeth<-colSums(BirthsbyW )
 
 
-LAstot.deaths<-rowSums(LAE16tot.deaths)
-LAsBirthsAll<-rowSums(LAE16BirthsAll)
-LAsimm.flow<-rowSums(LAE16imm.flow)
-LAssurv.em<-rowSums(LAE16surv.em)
-LAsout.migrants<-rowSums(LAE16out.migrants)
-LAsfininmig<-rowSums(LAE16fininmig)
-LAsinitialpop<-rowSums(LAE16initialpop)
-LAsfpop<-rowSums(LAE16fpop)
-LAsbirthstW<-rowSums(LAE16birthstW)
+LAstot.deaths<-rowSums(LAEDetGrouptot.deaths)
+LAsBirthsAll<-rowSums(LAEDetGroupBirthsAll)
+LAsimm.flow<-rowSums(LAEDetGroupimm.flow)
+LAssurv.em<-rowSums(LAEDetGroupsurv.em)
+LAsout.migrants<-rowSums(LAEDetGroupout.migrants)
+LAsfininmig<-rowSums(LAEDetGroupfininmig)
+LAsinitialpop<-rowSums(LAEDetGroupinitialpop)
+LAsfpop<-rowSums(LAEDetGroupfpop)
+LAsbirthstW<-rowSums(LAEDetGroupbirthstW)
 
 #sum(LAssurv.em)
 
 
-LAsComp<-cbind(rowSums(LAE16tot.deaths),
-rowSums(LAE16BirthsAll),
-rowSums(LAE16imm.flow),
-rowSums(LAE16surv.em),
-rowSums(LAE16out.migrants),
-rowSums(LAE16fininmig),
-rowSums(LAE16initialpop),
-rowSums(LAE16fpop),
-rowSums(LAE16birthstW))
+LAsComp<-cbind(rowSums(LAEDetGrouptot.deaths),
+rowSums(LAEDetGroupBirthsAll),
+rowSums(LAEDetGroupimm.flow),
+rowSums(LAEDetGroupsurv.em),
+rowSums(LAEDetGroupout.migrants),
+rowSums(LAEDetGroupfininmig),
+rowSums(LAEDetGroupinitialpop),
+rowSums(LAEDetGroupfpop),
+rowSums(LAEDetGroupbirthstW))
 
 LAsComp<-data.frame(LAsComp)      
       #dim(LAsComp)
