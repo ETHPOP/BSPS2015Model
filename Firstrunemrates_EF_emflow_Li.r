@@ -1,6 +1,11 @@
 
+#####Define inputs for first run
 
 #ONSem<-emNo2001_2
+Groups<-12          #######Number of ethnic groups
+Areas<-327          #######Number of Areas
+GrAr<-Groups*Areas  #######No of areas mulitplied by number of groups (Number of rows)
+
 initialpop<-data.frame(population)
 fertility<-allfert2001
 surv.prob<-allsurv2001
@@ -10,14 +15,26 @@ inm.prob<-allinm2001
 imm.flow<-allImm2001
    #dim(imm.flow)
 
+
+
+##############Fertility section#############
+
 #totBirths<-initialpop*Newf
-
-
-totBirths<-initialpop*fertility
+totBirths<-initialpop*fertility##### WHAT happened to 1/2 fertility? 
+####What is the age time setting of the fertility data?
 #dim(initialpop)
 #dim(fertility)
+
+###Sum up all birth to a single column
 Births<-rowSums(totBirths)
 Births<-data.frame(Births)
+
+
+
+
+#####Apply ethnic mixing
+####Some babies born to mothers from an ethnic groups will have
+####a different ethnicity to their mothers'
 
 
 #BirthsWBR<-Births*mixingmatrix$WBR
@@ -39,9 +56,8 @@ BirthsBLC<-Births*mixingmatrix$BLC
 BirthsOBL<-Births*mixingmatrix$OBL
 BirthsOTH<-Births*mixingmatrix$OTH
 
-Groups<-12
-Areas<-327
-GrAr<-Groups*Areas
+
+
 
 
 #BirthsWBRs<-data.frame(rowSums(data.frame(matrix(BirthsWBR[1:GrAr,],nrow=Areas,ncol=Groups)))  )
@@ -102,20 +118,30 @@ BirthsBLCs,
 BirthsOBLs,
 BirthsOTHs)
 
+#####Boys and Girls
+
 MBirths<-BirthsAll*bm
 FBirths<-BirthsAll*bf
 
 #min(BirthsAll)
 
+
+#######Birth are added to the the population#######
+###
 start.pop<-cbind(MBirths,initialpop[,1:101],FBirths,initialpop[,102:202])
 
 #min(start.pop)
 
 
+##########Mortality section
+
+#Population surviving
+
 total.survivors<-surv.prob*start.pop
 
 #min(total.survivors)
 
+##Number of deaths
 tot.deaths<-start.pop-total.survivors
 
 #set emrate, here simple half of birth to one is 
@@ -123,10 +149,14 @@ tot.deaths<-start.pop-total.survivors
 #em.rate[1]<-0.5*em.rate[2]
 #em.rate[103]<-0.5*em.rate[104]
 
+
 ##This step scales the emigration to allign the emigration number to the actual number
 ##at least for the first 6 years, not in the benchmark projections, but the TrONS, UPTAP
 
+#######International migration section PART 1
 
+###Emigration
+#The newborns get half the flow of age 0
 
 em.flow<-c((0.5*em.flow[1]),em.flow[1:101],(0.5*em.flow[102]),em.flow[102:202])
 em.flow<-data.frame(em.flow)
@@ -143,11 +173,15 @@ surv.em<-(surv.prob^0.5)*em.flow
 
 #min(surv.em)
 
+
+###Emgrants are diducted from the populations
+
 surv.pop<-(total.survivors-surv.em)
 #for(i in 1:ncol(surv.pop))surv.pop[,i]<-ifelse(surv.pop[,i]<0,0,surv.pop[,i])
 
 #min(surv.pop)
 
+####Internal migration
 out.migrants<-outm.prob*surv.pop
 
 uksurvWBI<-colSums(surv.pop[1:327,])
@@ -314,73 +348,124 @@ outerregionpop<-uk.surv_df-surv.pop
 
 priminmig<-inm.prob*outerregionpop
 
-priminWBR<- sum(priminmig[1:355,])
-priminWIR<- sum(priminmig[356:710,])
-priminWHO<- sum(priminmig[711:1065,])
-priminWBC<- sum(priminmig[1066:1420,])
-priminWBA<- sum(priminmig[1421:1775,])
-priminWAS<- sum(priminmig[1776:2130,])
-priminOMI<- sum(priminmig[2131:2485,])
-priminIND<- sum(priminmig[2486:2840,])
-priminPAK<- sum(priminmig[2841:3195,])
-priminBAN<- sum(priminmig[3196:3550,])
-priminOAS<- sum(priminmig[3551:3905,])
-priminBLC<- sum(priminmig[3906:4260,])
-priminBLA<- sum(priminmig[4261:4615,])
-priminOBL<- sum(priminmig[4616:4970,])
-priminCHI<- sum(priminmig[4971:5325,])
-priminOTH<- sum(priminmig[5326:5680,])
 
-out.mWBR<- sum(out.migrants[1:355,])
-out.mWIR<- sum(out.migrants[356:710,])
-out.mWHO<- sum(out.migrants[711:1065,])
-out.mWBC<- sum(out.migrants[1066:1420,])
-out.mWBA<- sum(out.migrants[1421:1775,])
-out.mWAS<- sum(out.migrants[1776:2130,])
-out.mOMI<- sum(out.migrants[2131:2485,])
-out.mIND<- sum(out.migrants[2486:2840,])
-out.mPAK<- sum(out.migrants[2841:3195,])
-out.mBAN<- sum(out.migrants[3196:3550,])
-out.mOAS<- sum(out.migrants[3551:3905,])
-out.mBLC<- sum(out.migrants[3906:4260,])
-out.mBLA<- sum(out.migrants[4261:4615,])
-out.mOBL<- sum(out.migrants[4616:4970,])
-out.mCHI<- sum(out.migrants[4971:5325,])
-out.mOTH<- sum(out.migrants[5326:5680,])
+####
+priminWBI<-sum(priminmig[1:327,])
+priminWHO<-sum(priminmig[328:654,])
+priminMIX<-sum(priminmig[655:981,])
+priminIND<-sum(priminmig[982:1308,])
+priminPAK<-sum(priminmig[1309:1635,])
+priminBAN<-sum(priminmig[1636:1962,])
+priminCHI<-sum(priminmig[1963:2289,])
+priminOAS<-sum(priminmig[2290:2616,])
+priminBLA<-sum(priminmig[2617:2943,])
+priminBLC<-sum(priminmig[2944:3270,])
+priminOBL<-sum(priminmig[3271:3597,])
+priminOTH<-sum(priminmig[3598:3924,])
 
-outprimcorrWBR<-out.mWBR/priminWBR
-outprimcorrWIR<-out.mWIR/priminWIR
+
+
+#priminWBR<- sum(priminmig[1:355,])
+#priminWIR<- sum(priminmig[356:710,])
+#priminWHO<- sum(priminmig[711:1065,])
+#priminWBC<- sum(priminmig[1066:1420,])
+#priminWBA<- sum(priminmig[1421:1775,])
+#priminWAS<- sum(priminmig[1776:2130,])
+#priminOMI<- sum(priminmig[2131:2485,])
+#priminIND<- sum(priminmig[2486:2840,])
+#priminPAK<- sum(priminmig[2841:3195,])
+#priminBAN<- sum(priminmig[3196:3550,])
+#priminOAS<- sum(priminmig[3551:3905,])
+#priminBLC<- sum(priminmig[3906:4260,])
+#priminBLA<- sum(priminmig[4261:4615,])
+#priminOBL<- sum(priminmig[4616:4970,])
+#priminCHI<- sum(priminmig[4971:5325,])
+#priminOTH<- sum(priminmig[5326:5680,])
+
+
+out.mWBI<-sum(out.migrants[1:327,])
+out.mWHO<-sum(out.migrants[328:654,])
+out.mMIX<-sum(out.migrants[655:981,])
+out.mIND<-sum(out.migrants[982:1308,])
+out.mPAK<-sum(out.migrants[1309:1635,])
+out.mBAN<-sum(out.migrants[1636:1962,])
+out.mCHI<-sum(out.migrants[1963:2289,])
+out.mOAS<-sum(out.migrants[2290:2616,])
+out.mBLA<-sum(out.migrants[2617:2943,])
+out.mBLC<-sum(out.migrants[2944:3270,])
+out.mOBL<-sum(out.migrants[3271:3597,])
+out.mOTH<-sum(out.migrants[3598:3924,])
+
+
+
+#out.mWBR<- sum(out.migrants[1:355,])
+#out.mWIR<- sum(out.migrants[356:710,])
+#ut.mWHO<- sum(out.migrants[711:1065,])
+#out.mWBC<- sum(out.migrants[1066:1420,])
+#out.mWBA<- sum(out.migrants[1421:1775,])
+#out.mWAS<- sum(out.migrants[1776:2130,])
+#out.mOMI<- sum(out.migrants[2131:2485,])
+#out.mIND<- sum(out.migrants[2486:2840,])
+#out.mPAK<- sum(out.migrants[2841:3195,])
+#out.mBAN<- sum(out.migrants[3196:3550,])
+#out.mOAS<- sum(out.migrants[3551:3905,])
+#out.mBLC<- sum(out.migrants[3906:4260,])
+#out.mBLA<- sum(out.migrants[4261:4615,])
+#out.mOBL<- sum(out.migrants[4616:4970,])
+#out.mCHI<- sum(out.migrants[4971:5325,])
+#out.mOTH<- sum(out.migrants[5326:5680,])
+
+outprimcorrWBI<-out.mWBI/priminWBI
+#outprimcorrWBR<-out.mWBR/priminWBR
+#outprimcorrWIR<-out.mWIR/priminWIR
 outprimcorrWHO<-out.mWHO/priminWHO
-outprimcorrWBC<-out.mWBC/priminWBC
-outprimcorrWBA<-out.mWBA/priminWBA
-outprimcorrWAS<-out.mWAS/priminWAS
-outprimcorrOMI<-out.mOMI/priminOMI
+#outprimcorrWBC<-out.mWBC/priminWBC
+#outprimcorrWBA<-out.mWBA/priminWBA
+#outprimcorrWAS<-out.mWAS/priminWAS
+#outprimcorrOMI<-out.mOMI/priminOMI
+outprimcorrMIX<-out.mMIX/priminMIX
 outprimcorrIND<-out.mIND/priminIND
 outprimcorrPAK<-out.mPAK/priminPAK
 outprimcorrBAN<-out.mBAN/priminBAN
-outprimcorrOAS<-out.mOAS/priminOAS
-outprimcorrBLC<-out.mBLC/priminBLC
-outprimcorrBLA<-out.mBLA/priminBLA
-outprimcorrOBL<-out.mOBL/priminOBL
 outprimcorrCHI<-out.mCHI/priminCHI
+outprimcorrOAS<-out.mOAS/priminOAS
+outprimcorrBLA<-out.mBLA/priminBLA
+outprimcorrBLC<-out.mBLC/priminBLC
+outprimcorrOBL<-out.mOBL/priminOBL
 outprimcorrOTH<-out.mOTH/priminOTH
 
-fininWBR<-priminmig[1:355,]*outprimcorrWBR
-fininWIR<-priminmig[356:710,]*outprimcorrWIR
-fininWHO<-priminmig[711:1065,]*outprimcorrWHO
-fininWBC<-priminmig[1066:1420,]*outprimcorrWBC
-fininWBA<-priminmig[1421:1775,]*outprimcorrWBA
-fininWAS<-priminmig[1776:2130,]*outprimcorrWAS
-fininOMI<-priminmig[2131:2485,]*outprimcorrOMI
-fininIND<-priminmig[2486:2840,]*outprimcorrIND
-fininPAK<-priminmig[2841:3195,]*outprimcorrPAK
-fininBAN<-priminmig[3196:3550,]*outprimcorrBAN
-fininOAS<-priminmig[3551:3905,]*outprimcorrOAS
-fininBLC<-priminmig[3906:4260,]*outprimcorrBLC
-fininBLA<-priminmig[4261:4615,]*outprimcorrBLA
-fininOBL<-priminmig[4616:4970,]*outprimcorrOBL
-fininCHI<-priminmig[4971:5325,]*outprimcorrCHI
-fininOTH<-priminmig[5326:5680,]*outprimcorrOTH
+fininWBI<-priminmig[1:327,]*outprimcorrWBR
+fininWHO<-priminmig[328:654,]*outprimcorrWBR
+fininMIX<-priminmig[655:981,]*outprimcorrWBR
+fininIND<-priminmig[982:1308,]*outprimcorrWBR
+fininPAK<-priminmig[1309:1635,]*outprimcorrWBR
+fininBAN<-priminmig[1636:1962,]*outprimcorrWBR
+fininCHI<-priminmig[1963:2289,]*outprimcorrWBR
+fininOAS<-priminmig[2290:2616,]*outprimcorrWBR
+fininBLA<-priminmig[2617:2943,]*outprimcorrWBR
+fininBLC<-priminmig[2944:3270,]*outprimcorrWBR
+fininOBL<-priminmig[3271:3597,]*outprimcorrWBR
+fininOTH<-priminmig[3598:3924,]*outprimcorrWBR
+
+
+
+
+#fininWBR<-priminmig[1:355,]*outprimcorrWBR
+#fininWIR<-priminmig[356:710,]*outprimcorrWIR
+#fininWHO<-priminmig[711:1065,]*outprimcorrWHO
+#fininWBC<-priminmig[1066:1420,]*outprimcorrWBC
+#fininWBA<-priminmig[1421:1775,]*outprimcorrWBA
+#fininWAS<-priminmig[1776:2130,]*outprimcorrWAS
+#fininOMI<-priminmig[2131:2485,]*outprimcorrOMI
+#fininIND<-priminmig[2486:2840,]*outprimcorrIND
+#fininPAK<-priminmig[2841:3195,]*outprimcorrPAK
+#fininBAN<-priminmig[3196:3550,]*outprimcorrBAN
+#fininOAS<-priminmig[3551:3905,]*outprimcorrOAS
+#fininBLC<-priminmig[3906:4260,]*outprimcorrBLC
+#fininBLA<-priminmig[4261:4615,]*outprimcorrBLA
+#fininOBL<-priminmig[4616:4970,]*outprimcorrOBL
+#fininCHI<-priminmig[4971:5325,]*outprimcorrCHI
+#fininOTH<-priminmig[5326:5680,]*outprimcorrOTH
 
 
 fininmig<-rbind(fininWBR,
@@ -405,6 +490,12 @@ fininOTH)
 
 surv.stayers<-surv.pop-out.migrants
 
+#######International migration section PART 2
+
+##Immigration
+
+##Immigrants are added to the population
+
 imm.flow<-c((0.5*imm.flow[1]),imm.flow[1:101],(0.5*imm.flow[102]),imm.flow[102:202])
 
 imm.flow<-data.frame(imm.flow)
@@ -424,23 +515,27 @@ for(i in 1:ncol(fpop))  fpop [,i]<-ifelse(fpop[,i] < 0, 0, fpop[,i])
 
 ##min(fpop)
 
+######Population ages, 
+
 Newstartpop<- c(fpop[1:100],(fpop[101]+ fpop[102]),fpop[103:202],(fpop[203]+fpop[204]))
 
 Newpop<-data.frame(Newstartpop)
 
-tot.deaths<-data.frame(tot.deaths)
-BirthsAll<-data.frame(BirthsAll)
-imm.flow<-data.frame(imm.flow)
-surv.em<-data.frame(surv.em)
-out.migrants<-data.frame(out.migrants)
-fininmig<-data.frame(fininmig)
-GorLaEth<-data.frame(GorLaEth)
-initialpop<-data.frame(initialpop)
-fpop<-data.frame(fpop)
+#####Components of this run
+
+
+tot.deaths<-data.frame(tot.deaths)###Number of deaths
+BirthsAll<-data.frame(BirthsAll)###Number of births
+imm.flow<-data.frame(imm.flow)###Number of immigranst
+surv.em<-data.frame(surv.em)###Number of emigrants
+out.migrants<-data.frame(out.migrants)###Number of internal out migrants
+fininmig<-data.frame(fininmig)###Number of internal in migrants
+initialpop<-data.frame(initialpop)###Start population
+fpop<-data.frame(fpop)###End population (and new start population)
 
 
  #fix( initialpop)
-
+GorLaEth<-data.frame(GorLaEth)###
 ##this computes sums of ethnic groups subsests X3 in GorLAEth is the ethnic group number
 ##maybe write function components
 components<-c(E01WBRdth<-sum(subset(tot.deaths,GorLaEth$X3==1)),
@@ -592,6 +687,8 @@ LAEDetGroupbirthstW<-round(data.frame(matrix(rowSums(totBirths),ncol=Groups)),2)
 #BirthsbyWeth<-colSums(BirthsbyW )
 
 
+
+####Components by local areas
 LAstot.deaths<-rowSums(LAEDetGrouptot.deaths)
 LAsBirthsAll<-rowSums(LAEDetGroupBirthsAll)
 LAsimm.flow<-rowSums(LAEDetGroupimm.flow)
@@ -604,8 +701,8 @@ LAsbirthstW<-rowSums(LAEDetGroupbirthstW)
 
 #sum(LAssurv.em)
 
-
-LAsComp<-cbind(rowSums(LAEDetGrouptot.deaths),
+###One data frame for the 
+LAsComp<-cbind.data.frame(rowSums(LAEDetGrouptot.deaths),##or data,frame.cbind
 rowSums(LAEDetGroupBirthsAll),
 rowSums(LAEDetGroupimm.flow),
 rowSums(LAEDetGroupsurv.em),
@@ -615,27 +712,27 @@ rowSums(LAEDetGroupinitialpop),
 rowSums(LAEDetGroupfpop),
 rowSums(LAEDetGroupbirthstW))
 
-LAsComp<-data.frame(LAsComp)      
+#LAsComp<-data.frame(LAsComp)      
       #dim(LAsComp)
 
 colnames(LAsComp)<-c("tot.deaths",
-"BirthsAll",
-"imm.flow",
-"surv.em",
-"out.migrants",
-"fininmig",
-"initialpop",
-"fpop",
-          "birthsTo")
+                        "BirthsAll",
+                        "imm.flow",
+                        "surv.em",
+                        "out.migrants",
+                        "fininmig",
+                        "initialpop",
+                        "fpop",
+                        "birthsTo")
 
 colnames(components)<-c("tot.deaths",
-"BirthsAll",
-"imm.flow",
-"surv.em",
-"out.migrants",
-"fininmig",
-"initialpop",
-"fpop")
+                        "BirthsAll",
+                        "imm.flow",
+                        "surv.em",
+                        "out.migrants",
+                        "fininmig",
+                        "initialpop",
+                        "fpop")
           
           #"birthsTo")
 
