@@ -136,16 +136,24 @@ allEMflow2014<-read.csv("TRfEM2014.csv")[-1]
 setwd(MainDIR)
 setwd(".\\AdditionalFiles")
 
-ethgroups5680<-read.csv("ethgroups5680.csv")
-LA5680<-read.csv("LA5680.csv")
+#ethgroups5680<-read.csv("ethgroups5680.csv")
+#LA5680<-read.csv("LA5680.csv")
 
-GORSlist<-read.csv("GORSlist.csv")
-GORSlist2<-GORSlist[1:355,]
+GorLaEth<-cbind.data.frame(
+rep(1:327,12),
+rep(1:12,each=327))
 
-GorLaEth<-cbind(GORSlist2$GorNo,LA5680$LA,ethgroups5680$ethgroup)
+names(GorLaEth)<-c("X2","X3")
 
-zones<-read.csv("Zones.csv")
-zones_long<-read.csv("Zones_long.csv")
+
+
+#GORSlist<-read.csv("GORSlist.csv")
+#GORSlist2<-GORSlist[1:355,]
+
+#GorLaEth<-cbind(GORSlist2$GorNo,LA5680$LA,ethgroups5680$ethgroup)
+
+#zones<-read.csv("Zones.csv")
+#zones_long<-read.csv("Zones_long.csv")
 
 
 #setwd("C:/WorkSpace/CSAP/EthnicProjections/Projections/Rprojection/August2011Version2Projections/V2InputData/MortalityV2")
