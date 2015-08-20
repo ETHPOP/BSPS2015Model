@@ -4,13 +4,13 @@ setwd(MainDIR)
 setwd(".\\Mortality")
 
 
-allsurv2001<-read.csv("allsurv2001.csv")[-1]
-allsurv2002<-read.csv("allsurv2002.csv")[-1]
-allsurv2003<-read.csv("allsurv2003.csv")[-1]
-allsurv2004<-read.csv("allsurv2004.csv")[-1]
-allsurv2005<-read.csv("allsurv2005.csv")[-1]
-allsurv2006<-read.csv("allsurv2006.csv")[-1]
-allsurv2007<-read.csv("allsurv2007.csv")[-1]
+allsurv2001<-read.csv("SURV2001.csv")[-1]
+allsurv2002<-read.csv("SURV2002.csv")[-1]
+allsurv2003<-read.csv("SURV2003.csv")[-1]
+allsurv2004<-read.csv("SURV2004.csv")[-1]
+allsurv2005<-read.csv("SURV2005.csv")[-1]
+allsurv2006<-read.csv("SURV2006.csv")[-1]
+allsurv2007<-read.csv("SURV2007.csv")[-1]
 
 morttrend<-read.csv("BSPS2015SURVTREND.csv")
 morttrendb<-(100-morttrend)/100  
