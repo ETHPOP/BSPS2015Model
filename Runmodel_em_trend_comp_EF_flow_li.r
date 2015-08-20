@@ -576,81 +576,12 @@ colnames(Startpop0151)<-2002:2051
 colnames(Endpop0151)<-2002:2051
 colnames(out.mig0151)<-2002:2051
 
-
-
-
-write.csv(Deaths0151,"Deaths0151TRENDEFV2.csv")
-write.csv(Births0151,"Births0151TRENDEFV2.csv")
-write.csv(Immig0151,"Immig0151TRENDEFV2.csv")
-write.csv(Emig0151,"Emig0151TRENDEFV2.csv")
-write.csv(fininmig0151,"fininmig0151TRENDEFV2.csv")
-write.csv(Startpop0151,"Startpop0151TRENDEFV2.csv")
-write.csv(Endpop0151,"Endpop0151TRENDEFV2.csv")
-write.csv(out.mig0151,"out.mig0151TRENDEFV2.csv")
-
-#colSums(Emig0151)
-
-write.csv(population,"TRENDEFV22001.csv")
-write.csv(t2002,"TRENDEFV22002.csv")
-write.csv(t2003,"TRENDEFV22003.csv")
-write.csv(t2004,"TRENDEFV22004.csv")
-write.csv(t2005,"TRENDEFV22005.csv")
-write.csv(t2006,"TRENDEFV22006.csv")
-write.csv(t2007,"TRENDEFV22007.csv")
-write.csv(t2008,"TRENDEFV22008.csv")
-write.csv(t2009,"TRENDEFV22009.csv")
-write.csv(t2010,"TRENDEFV22010.csv")
-write.csv(t2011,"TRENDEFV22011.csv")
-write.csv(t2012,"TRENDEFV22012.csv")
-write.csv(t2013,"TRENDEFV22013.csv")
-write.csv(t2014,"TRENDEFV22014.csv")
-write.csv(t2015,"TRENDEFV22015.csv")
-write.csv(t2016,"TRENDEFV22016.csv")
-write.csv(t2017,"TRENDEFV22017.csv")
-write.csv(t2018,"TRENDEFV22018.csv")
-write.csv(t2019,"TRENDEFV22019.csv")
-write.csv(t2020,"TRENDEFV22020.csv")
-write.csv(t2021,"TRENDEFV22021.csv")
-write.csv(t2022,"TRENDEFV22022.csv")
-write.csv(t2023,"TRENDEFV22023.csv")
-write.csv(t2024,"TRENDEFV22024.csv")
-write.csv(t2025,"TRENDEFV22025.csv")
-write.csv(t2026,"TRENDEFV22026.csv")
-write.csv(t2027,"TRENDEFV22027.csv")
-write.csv(t2028,"TRENDEFV22028.csv")
-write.csv(t2029,"TRENDEFV22029.csv")
-write.csv(t2030,"TRENDEFV22030.csv")
-write.csv(t2031,"TRENDEFV22031.csv")
-write.csv(t2032,"TRENDEFV22032.csv")
-write.csv(t2033,"TRENDEFV22033.csv")
-write.csv(t2034,"TRENDEFV22034.csv")
-write.csv(t2035,"TRENDEFV22035.csv")
-write.csv(t2036,"TRENDEFV22036.csv")
-write.csv(t2037,"TRENDEFV22037.csv")
-write.csv(t2038,"TRENDEFV22038.csv")
-write.csv(t2039,"TRENDEFV22039.csv")
-write.csv(t2040,"TRENDEFV22040.csv")
-write.csv(t2041,"TRENDEFV22041.csv")
-write.csv(t2042,"TRENDEFV22042.csv")
-write.csv(t2043,"TRENDEFV22043.csv")
-write.csv(t2044,"TRENDEFV22044.csv")
-write.csv(t2045,"TRENDEFV22045.csv")
-write.csv(t2046,"TRENDEFV22046.csv")
-write.csv(t2047,"TRENDEFV22047.csv")
-write.csv(t2048,"TRENDEFV22048.csv")
-write.csv(t2049,"TRENDEFV22049.csv")
-write.csv(t2050,"TRENDEFV22050.csv")
-write.csv(t2051,"TRENDEFV22051.csv")
-
-
-
-      
+     
  
 # par(mfrow=c(4,4))
  # par(mar=c(1,2,2,1))
  #
 # for(i in 1:16) plot(Births0151[i,], col=i)
- 
  
  
 #  par(mfrow=c(4,4))
@@ -668,10 +599,6 @@ write.csv(t2051,"TRENDEFV22051.csv")
 #for i in 1:16
 #plot(Births0151b[1,])
 #points(Deaths[1,])
-
-
-
-
 
 #par(mfrow=c(2,4))
 #plot(Deaths[1,])

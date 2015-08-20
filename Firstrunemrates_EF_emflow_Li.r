@@ -20,7 +20,10 @@ imm.flow<-allImm2001
 ##############Fertility section#############
 
 #totBirths<-initialpop*Newf
-totBirths<-initialpop*fertility##### WHAT happened to 1/2 fertility? 
+
+fertility[113:151]<-0.5*(fertility[113:151]+fertility[114:152])
+
+totBirths<-initialpop*fertility#####
 ####What is the age time setting of the fertility data?
 #dim(initialpop)
 #dim(fertility)
